@@ -6,6 +6,7 @@ Currently all of the JSX syntax highlighting packages depend on the ES6 highligh
 
 See here for more information:
 
+- https://github.com/sublimehq/Packages/issues/133
 - https://github.com/sublimehq/Packages/issues/63
 - https://github.com/sublimehq/Packages/pull/96
 - https://github.com/sublimehq/Packages/commit/409ccb469bca8bcc2a5c70c562d1db3428d3015f
