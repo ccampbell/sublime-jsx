@@ -1,0 +1,54 @@
+%YAML 1.2
+---
+name: JSX
+scope: source.jsx
+file_extensions:
+  - jsx
+uuid: 0ca76258-89e6-4055-9fe0-5c45dfea987c
+contexts:
+
+  # This is stolen from the JavaScript.sublime-syntax
+  comments:
+    # - include: special-comments-conditional-compilation
+    - match: /\*\*(?!/)
+      scope: punctuation.definition.comment.js
+      push:
+        - meta_scope: comment.block.documentation.js
+        - match: \*/
+          scope: punctuation.definition.comment.js
+          pop: true
+    - match: /\*
+      scope: punctuation.definition.comment.js
+      push:
+        - meta_scope: comment.block.js
+        - match: \*/
+          scope: punctuation.definition.comment.js
+          pop: true
+    - match: //
+      scope: punctuation.definition.comment.js
+      push:
+        - meta_scope: comment.line.double-slash.js
+        - match: \n
+          pop: true
+
+  main:
+    - match: ''
+      push: 'scope:source.js'
+      with_prototype:
+        - include: comments
+        - match: \s*\(?(?=<([a-zA-Z]+|\/))
+          scope: punctuation.section.embedded.begin.jsx
+          push:
+            - meta_scope: meta.embedded.block.jsx
+            - meta_content_scope: source.jsx.embedded
+            - match: (?<=>)\)?;?\s*$
+              scope: punctuation.section.embedded.end.jsx
+              pop: true
+            - include: 'scope:text.html.basic'
+          with_prototype:
+            - match: \{
+              push:
+                - meta_scope: meta.embedded.block.jsx.js
+                - match: \}
+                  pop: true
+                - include: 'scope:source.js'
