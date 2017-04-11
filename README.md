@@ -15,6 +15,14 @@ See here for more information:
 
 If you are using Sublime Package Control you can press `command+shift+p`. Then select `Package Control: Install Package` and choose `Simple JSX`.
 
+## Usage
+
+Highlighting should be enabled by default for files that end with a `.jsx` extension.
+
+To turn on JSX highlighting for other files, open a JavaScript file containing JSX then press `command+shift+p` and select `Set Syntax: JSX`.
+
+You can also select `View -> Syntax -> Open all with current extension as…` and select `JSX` from the top nav to enable highlighting for all files with a certain extension (`.js`, `.jsx`, etc).
+
 ## Screenshots
 
 #### Before
