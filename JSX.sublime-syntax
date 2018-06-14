@@ -7,7 +7,7 @@ file_extensions:
 uuid: 0ca76258-89e6-4055-9fe0-5c45dfea987c
 contexts:
 
-  # This is stolen from the JavaScript.sublime-syntax
+  # These are stolen from the JavaScript.sublime-syntax
   comments:
     # - include: special-comments-conditional-compilation
     - match: /\*\*(?!/)
@@ -31,10 +31,38 @@ contexts:
         - match: \n
           pop: true
 
+  string-content:
+     - match: \\\s*\n
+       scope: constant.character.escape.newline.js
+     - match: '\\(x[\da-fA-F][\da-fA-F]|u[\da-fA-F][\da-fA-F][\da-fA-F][\da-fA-F]|.)'
+       scope: constant.character.escape.js
+
+  literal-string-template:
+    - match: '`'
+      scope: punctuation.definition.string.template.begin.js
+      set:
+        - meta_include_prototype: false
+        - meta_scope: string.template.js
+        - match: "`"
+          scope: punctuation.definition.string.template.end.js
+          pop: true
+        - match: '\$\{'
+          captures:
+            0: punctuation.definition.template-expression.begin.js
+          push:
+            - clear_scopes: 1
+            - meta_scope: meta.template.expression.js
+            - meta_content_scope: source.js.embedded.expression
+            - match: '\}'
+              scope: punctuation.definition.template-expression.end.js
+              pop: true
+        - include: string-content
+
   main:
     - match: ''
       push: 'scope:source.js'
       with_prototype:
+        - include: literal-string-template
         - include: comments
         - match: \s*\(?(?=<([a-zA-Z]+|\/))
           scope: punctuation.section.embedded.begin.jsx
