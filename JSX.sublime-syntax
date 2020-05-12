@@ -82,3 +82,5 @@ contexts:
                 - match: (?=\})
                   pop: true
                 - include: 'scope:source.js'
+            - match: \}
+              pop: true
