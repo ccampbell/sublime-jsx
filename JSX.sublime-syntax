@@ -79,6 +79,8 @@ contexts:
             - match: \{
               push:
                 - meta_scope: meta.embedded.block.jsx.js
-                - match: \}
+                - match: (?=\})
                   pop: true
                 - include: 'scope:source.js'
+            - match: \}
+              pop: true
