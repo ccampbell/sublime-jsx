@@ -64,7 +64,7 @@ contexts:
       with_prototype:
         - include: literal-string-template
         - include: comments
-        - match: (return)?\s*\(?(?=<([a-zA-Z]+|\/))
+        - match: (return)?\s*(?=\(?)(?=<([a-zA-Z]+|\/))
           captures:
             0: keyword.control.flow.js
           scope: punctuation.section.embedded.begin.jsx
